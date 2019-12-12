@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="uap.geocolportaje.geocoportaje.nuevolibroActivity">
+
+    <RelativeLayout
+        android:layout_width="373dp"
+        android:layout_height="481dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editorial"
+            android:layout_below="@+id/edEditorial"
+            android:layout_alignStart="@+id/edEditorial"
+            android:layout_marginTop="13dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/edAutor"
+            android:layout_below="@+id/edAutor"
+            android:layout_marginTop="11dp"
+            android:text="Nombre y Apellido del Autor" />
+
+        <EditText
+            android:id="@+id/edLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edAutor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="47dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edEditorial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="43dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/edLibro"
+            android:layout_below="@+id/edLibro"
+            android:text="Nombre del Libro" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:text="Cancelar" />
+
+        <Button
+            android:id="@+id/btnGuardarLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button4"
+            android:layout_marginStart="23dp"
+            android:layout_toEndOf="@+id/textView"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:onClick="onClick"
+            android:text="Guardar" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
