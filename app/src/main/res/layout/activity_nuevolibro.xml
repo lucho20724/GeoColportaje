@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uap.geocolportaje.geocoportaje.nuevolibroActivity">
+    tools:context="uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevolibroActivity">
 
     <RelativeLayout
         android:layout_width="373dp"

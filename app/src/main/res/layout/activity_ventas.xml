@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uap.geocolportaje.geocoportaje.ventasActivity">
+    tools:context="uap.geocolportaje.geocoportaje.Activities.ventasActivity">
 
 </android.support.constraint.ConstraintLayout>

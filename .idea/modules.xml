@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GeoColportaje.iml" filepath="$PROJECT_DIR$/GeoColportaje.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Geocoportaje.iml" filepath="$PROJECT_DIR$/Geocoportaje.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

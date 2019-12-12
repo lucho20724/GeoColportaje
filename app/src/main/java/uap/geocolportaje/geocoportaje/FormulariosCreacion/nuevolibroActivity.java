@@ -1,4 +1,4 @@
-package uap.geocolportaje.geocoportaje;
+package uap.geocolportaje.geocoportaje.FormulariosCreacion;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import uap.geocolportaje.geocoportaje.Conexion;
+import uap.geocolportaje.geocoportaje.R;
 
 public class nuevolibroActivity extends AppCompatActivity {
 
@@ -29,11 +32,11 @@ public class nuevolibroActivity extends AppCompatActivity {
 
         conn = new Conexion(this,"BD",null,1);
 
-        idLibro = getIntent().getIntExtra("idLibro",0);
-
         campoLibro=(EditText) findViewById(R.id.edLibro);
         campoAutor=(EditText) findViewById(R.id.edAutor);
         campoEditorial=(EditText) findViewById(R.id.edEditorial);
+
+        idLibro = getIntent().getIntExtra("idLibro",0);
 
         if(idLibro !=0){
             CargarDatos();

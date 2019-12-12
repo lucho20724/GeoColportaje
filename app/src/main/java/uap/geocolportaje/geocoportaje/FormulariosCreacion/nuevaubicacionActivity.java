@@ -1,4 +1,4 @@
-package uap.geocolportaje.geocoportaje;
+package uap.geocolportaje.geocoportaje.FormulariosCreacion;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class guardarubicacionActivity extends AppCompatActivity {
+import uap.geocolportaje.geocoportaje.Conexion;
+import uap.geocolportaje.geocoportaje.R;
+
+public class nuevaubicacionActivity extends AppCompatActivity {
 
     ArrayList<String> coordenadas;
     EditText campoDescripcion;

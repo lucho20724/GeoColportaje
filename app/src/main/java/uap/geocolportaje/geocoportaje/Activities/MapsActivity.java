@@ -1,4 +1,4 @@
-package uap.geocolportaje.geocoportaje;
+package uap.geocolportaje.geocoportaje.Activities;
 
 import android.Manifest;
 import android.content.Context;
@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
 import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevaubicacionActivity;
+import uap.geocolportaje.geocoportaje.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

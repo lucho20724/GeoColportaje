@@ -3,9 +3,8 @@ package uap.geocolportaje.geocoportaje;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
-import  uap.geocolportaje.geocoportaje.Utilidades;
+import uap.geocolportaje.geocoportaje.Utilidades.Utilidades;
 
 /**
  * Created by Lucho on 13/11/2019.

@@ -1,5 +1,6 @@
-package uap.geocolportaje.geocoportaje;
+package uap.geocolportaje.geocoportaje.FormulariosCreacion;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import uap.geocolportaje.geocoportaje.Conexion;
+import uap.geocolportaje.geocoportaje.R;
 import uap.geocolportaje.geocoportaje.Utilidades.Utilidades;
 
 
@@ -25,15 +28,26 @@ public class nuevaplanillaActivity extends AppCompatActivity {
     String fecha;
     SimpleDateFormat sdf;
 
+    int idPlanilla=0;
+    boolean modificar=false;
+
+    Conexion conn;
+
     /*TODO
     validaciones en los campos -> not null
     boton cancelar
      */
 
+    /*TODO
+    * Nombre del campo con textview
+    * */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevaplanilla);
+
+        conn = new Conexion(this,"BD",null,1);
 
         /*Referencia de componentes*/
         campoHorasPresetacion = (EditText) findViewById(R.id.edHorasPresentacion);
@@ -63,7 +77,16 @@ public class nuevaplanillaActivity extends AppCompatActivity {
         fecha =sdf.format(new Date());
         //-------------------------------------------------------------------------
 
+        idPlanilla= getIntent().getIntExtra("idPlanilla",0);
+
+        if (idPlanilla !=0){
+            CargarDatos();
+            modificar=true;
+        }
+
     }
+
+
 
     public void onClick(View view) {
         switch (view.getId()) {
@@ -103,6 +126,34 @@ public class nuevaplanillaActivity extends AppCompatActivity {
             campoAnio.setVisibility(View.VISIBLE);
             campoDia.setVisibility(View.VISIBLE);
             campoMes.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void CargarDatos() {
+        SQLiteDatabase db=conn.getReadableDatabase();
+        String[] parametro= {String.valueOf(idPlanilla)};
+
+        try{
+            Cursor cursor=db.rawQuery("SELECT horas_presenta, horas_entrega, presentaciones," +
+                    " suscripciones, folletos_misioneros, oraciones, cantidad_ventas " +
+                    "FROM planilla WHERE id =?",parametro);
+
+            cursor.moveToFirst();
+
+            campoHorasPresetacion.setText(String.valueOf(cursor.getInt(0)));
+            campoHorasEntrega.setText(String.valueOf(cursor.getInt(1)));
+            campoPresentaciones.setText(String.valueOf(cursor.getInt(2)));
+            campoSuscripciones.setText(String.valueOf(cursor.getInt(3)));
+            campoFolletos.setText(String.valueOf(cursor.getInt(4)));
+            campoOraciones.setText(String.valueOf(cursor.getInt(5)));
+            campoVentas.setText(String.valueOf(cursor.getInt(6)));
+            /*TODO
+            * Tratamiento de la fecha
+            * */
+
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
         }
     }
 

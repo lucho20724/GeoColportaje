@@ -4,194 +4,168 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uap.geocolportaje.geocoportaje.nuevaplanillaActivity">
+    tools:context="uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevaplanillaActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
 
     <RelativeLayout
-        android:layout_width="358dp"
-        android:layout_height="464dp"
-        android:layout_marginRight="16dp"
+        android:id="@+id/relativeLayout2"
+        android:layout_width="356dp"
+        android:layout_height="491dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="-3dp"
-        android:layout_marginEnd="16dp">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/edHorasPresenta"
+        <CheckBox
+            android:id="@+id/ckHoy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:ems="10"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/edHorasEntrega"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/edHorasPresenta"
-            android:layout_marginTop="17dp"
-            android:ems="10"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/edPresentaciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/edHorasEntrega"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/edSuscripciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/edPresentaciones"
-            android:layout_marginTop="19dp"
-            android:ems="10"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/edFolletos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/edSuscripciones"
-            android:layout_marginTop="21dp"
-            android:ems="10"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/edOraciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:ems="10"
-            android:inputType="number"
-            android:layout_below="@+id/edFolletos"
-            android:layout_alignParentEnd="true" />
-
-        <EditText
-            android:id="@+id/edVentas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/edOraciones"
-            android:layout_marginTop="13dp"
-            android:ems="10"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/edFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:ems="10"
-            android:inputType="date" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Horas Presentando"
-            android:layout_above="@+id/edHorasEntrega"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/edPresentaciones"
-            android:layout_alignStart="@+id/textView11"
-            android:text="Horas de Entrega" />
-
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/edSuscripciones"
-            android:layout_alignParentStart="true"
-            android:text="Presentaciones" />
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/edFolletos"
-            android:layout_alignStart="@+id/textView13"
-            android:text="Suscripciones" />
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/edOraciones"
-            android:layout_alignStart="@+id/textView14"
-            android:text="Folletos Misioneros" />
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/edVentas"
-            android:layout_alignStart="@+id/textView15"
-            android:text="Oraciones" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/edVentas"
-            android:layout_alignParentStart="true"
-            android:text="Cantidad de Ventas" />
-
-        <Button
-            android:id="@+id/btnFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/textView14"
-            android:layout_alignParentBottom="true"
-            android:text="Fecha" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="361dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="-13dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent">
+            android:layout_below="@+id/textView11"
+            android:layout_toStartOf="@+id/textView11"
+            android:text="Fecha Actual"
+            android:onClick="onClick"
+            />
 
         <Button
             android:id="@+id/btnGuardarPlanilla"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="40dp"
+            android:layout_alignBaseline="@+id/btnCancelar"
+            android:layout_alignBottom="@+id/btnCancelar"
+            android:layout_alignEnd="@+id/scrollView2"
+            android:layout_marginEnd="55dp"
             android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-            android:elevation="23dp"
+            android:elevation="24dp"
             android:onClick="onClick"
-            android:text="Guardar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="224dp" />
+            android:text="Guardar" />
 
         <Button
             android:id="@+id/btnCancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="54dp"
+            android:layout_marginBottom="11dp"
+            android:layout_marginStart="61dp"
             android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-            android:elevation="22dp"
-            android:onClick="onClick"
-            android:text="Cancelar"
+            android:elevation="24dp"
+            android:text="Cancelar" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Planilla de Control"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="354dp"
+            android:layout_height="351dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="224dp" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edHorasPresentacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Horas de presentacion"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edHorasEntrega"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Horas de entrega"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edPresentaciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Cantidad de presentaciones"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edSuscripciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Cantidad de suscripciones"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edFolletos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Cantidad de folletos"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edOraciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Cantidad de oriaciones"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edVentas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Cantidad de ventas"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edDia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Dia"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edMes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Mes"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/edAnio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Año"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

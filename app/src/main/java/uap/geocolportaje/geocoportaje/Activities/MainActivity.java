@@ -1,4 +1,4 @@
-package uap.geocolportaje.geocoportaje;
+package uap.geocolportaje.geocoportaje.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
+import uap.geocolportaje.geocoportaje.Conexion;
+import uap.geocolportaje.geocoportaje.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -78,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(MainActivity.this,libroActivity.class);
                 break;
 
+            case R.id.btnConfiguracionUsuario:
+                i = new Intent(MainActivity.this,usuarioActivity.class);
+                i.putExtra("Modificar",true);
+                break;
         }
 
         if(i !=null){

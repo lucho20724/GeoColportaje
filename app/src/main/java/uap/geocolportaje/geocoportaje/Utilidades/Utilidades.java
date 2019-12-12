@@ -1,9 +1,11 @@
-package uap.geocolportaje.geocoportaje;
+package uap.geocolportaje.geocoportaje.Utilidades;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
+
+import uap.geocolportaje.geocoportaje.Conexion;
 
 /**
  * Created by Lucho on 13/11/2019.

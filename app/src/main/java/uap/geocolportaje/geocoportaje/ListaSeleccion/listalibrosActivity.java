@@ -1,4 +1,4 @@
-package uap.geocolportaje.geocoportaje;
+package uap.geocolportaje.geocoportaje.ListaSeleccion;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import uap.geocolportaje.geocoportaje.Conexion;
 import uap.geocolportaje.geocoportaje.Entidades.Libro;
 import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevolibroActivity;
+import uap.geocolportaje.geocoportaje.R;
+import uap.geocolportaje.geocoportaje.Activities.libroActivity;
 
 public class listalibrosActivity extends AppCompatActivity {
 

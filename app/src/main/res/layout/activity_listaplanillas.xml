@@ -4,6 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uap.geocolportaje.geocoportaje.ListaSeleccion.listaplanillasActivity">
+    tools:context="uap.geocolportaje.geocoportaje.ListaSeleccion.listalibrosActivity">
 
+    <ListView
+        android:id="@+id/listViewPlanillas"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:background="@color/colorPrimary"
+        android:cacheColorHint="@color/common_google_signin_btn_text_dark_focused"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
