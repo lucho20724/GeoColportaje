@@ -28,7 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (!consultarUsuario()){
             Intent i= new Intent(MainActivity.this,usuarioActivity.class);
-            startActivity(i);
+            try{
+                startActivity(i);
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG).show();
+            }
         }
         else{
             SQLiteDatabase db=conn.getReadableDatabase();

@@ -1,11 +1,9 @@
 package uap.geocolportaje.geocoportaje;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import uap.geocolportaje.geocoportaje.Entidades.Libro;
+import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevolibroActivity;
 
 public class listalibrosActivity extends AppCompatActivity {
 

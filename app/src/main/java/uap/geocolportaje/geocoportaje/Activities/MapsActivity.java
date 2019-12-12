@@ -4,14 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,15 +18,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevaubicacionActivity;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -96,7 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
          mensaje= "Lat: "+String.valueOf(latitud)+" -  Long: "+ String.valueOf(longitud);
 
         //Envio de coordenadas a la activity para guardar en la BD
-        Intent intent = new Intent(getApplicationContext(),guardarubicacionActivity.class);
+        Intent intent = new Intent(getApplicationContext(),nuevaubicacionActivity.class);
         intent.putStringArrayListExtra("coordenadas", coordenadas);
         //Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
         startActivity(intent);

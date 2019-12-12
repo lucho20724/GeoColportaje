@@ -17,7 +17,10 @@ public class nuevolibroActivity extends AppCompatActivity {
     boolean modificar=false;
     Conexion conn;
 
-
+      /*TODO
+    validaciones en los campos -> not null
+    boton cancelar
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
