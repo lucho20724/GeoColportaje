@@ -32,6 +32,10 @@ public class planillaActivity extends AppCompatActivity {
                 i = new Intent(this,listaplanillasActivity.class);
                 i.putExtra("Eliminar",true);
                 break;
+            case R.id.btnVerPlanilla:
+                i = new Intent(this,listaplanillasActivity.class);
+                i.putExtra("Ver",true);
+                break;
         }
         if(i != null){
             startActivity(i);
