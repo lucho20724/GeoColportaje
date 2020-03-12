@@ -1,4 +1,4 @@
-package uap.geocolportaje.geocoportaje.Activities;
+package uap.geocolportaje.geocoportaje.ActivitiesPrincipales;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

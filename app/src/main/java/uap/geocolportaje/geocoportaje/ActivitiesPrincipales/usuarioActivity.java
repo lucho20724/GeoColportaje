@@ -1,4 +1,4 @@
-package uap.geocolportaje.geocoportaje.Activities;
+package uap.geocolportaje.geocoportaje.ActivitiesPrincipales;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -43,12 +43,22 @@ public class usuarioActivity extends AppCompatActivity {
     public void onClick(View view){
         Intent i = null;
         switch (view.getId()){
-            case R.id.btnGuardarUsuario:
+            case R.id.btnGuardarCliente:
                 if(modiificar){
-                    modificarUsuario();
-
+                    if (validar()) {
+                        modificarUsuario();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Debe completar todos los campos",Toast.LENGTH_SHORT).show();
+                        break;
+                    }
                 }else{
-                    guardarUsuario();
+                    if (validar()) {
+                        guardarUsuario();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Debe completar todos los campos",Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
                 }
 
                 i = new Intent(usuarioActivity.this,MainActivity.class);
@@ -58,6 +68,16 @@ public class usuarioActivity extends AppCompatActivity {
         if(i!=null){
             startActivity(i);
         }
+    }
+
+    private boolean validar() {
+        boolean valido=false;
+
+        if (!campoNombre.getText().toString().isEmpty() && !campoApellido.getText().toString().isEmpty() && !campoMail.getText().toString().isEmpty() && !campoTelefono.getText().toString().isEmpty()){
+            valido=true;
+        }
+
+        return valido;
     }
 
     private void modificarUsuario() {

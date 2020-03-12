@@ -1,4 +1,4 @@
-package uap.geocolportaje.geocoportaje.Activities;
+package uap.geocolportaje.geocoportaje.ActivitiesPrincipales;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -82,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnConfiguracionUsuario:
                 i = new Intent(MainActivity.this,usuarioActivity.class);
                 i.putExtra("Modificar",true);
+                break;
+
+            case R.id.btnCliente:
+                i = new Intent(MainActivity.this,clienteActivity.class);
                 break;
         }
 
