@@ -17,15 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".ActivitiesPrincipales.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.ventasActivity" />
-        <activity android:name=".Activities.libroActivity" />
+        <activity android:name=".ActivitiesPrincipales.ventasActivity" />
+        <activity android:name=".ActivitiesPrincipales.libroActivity" />
         <activity android:name=".FormulariosCreacion.nuevolibroActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -40,15 +40,26 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Activities.MapsActivity"
+            android:name=".ActivitiesPrincipales.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".FormulariosCreacion.nuevaubicacionActivity" />
-        <activity android:name=".Activities.usuarioActivity" />
+        <activity android:name=".ActivitiesPrincipales.usuarioActivity" />
         <activity android:name=".FormulariosCreacion.nuevaplanillaActivity" />
-        <activity android:name=".Activities.planillaActivity" />
+        <activity android:name=".ActivitiesPrincipales.planillaActivity" />
         <activity android:name=".ListaSeleccion.listalibrosActivity" />
         <activity android:name=".ListaSeleccion.listaplanillasActivity" />
-        <activity android:name=".Informes.informeplanillaActivity"></activity>
+        <activity android:name=".Informes.informeplanillaActivity" />
+        <activity android:name=".ActivitiesPrincipales.clienteActivity" />
+        <activity android:name=".FormulariosCreacion.nuevoclienteActivity" />
+        <activity android:name=".ListaSeleccion.listaclientesActivity" />
+        <activity
+            android:name=".FormulariosCreacion.nuevaventaActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ListaSeleccion.listaventasActivity" />
+        <activity android:name=".Informes.informeventaActivity" />
+        <activity android:name=".Informes.informeclienteActivity" />
+        <activity android:name=".ListaSeleccion.listapuntoActivity" />
+        <activity android:name=".Informes.informepuntosActivity"></activity>
     </application>
 
 </manifest>

@@ -1,9 +1,11 @@
-package uap.geocolportaje.geocoportaje.Activities;
+package uap.geocolportaje.geocoportaje.ActivitiesPrincipales;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -18,13 +20,18 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import uap.geocolportaje.geocoportaje.Conexion;
+import uap.geocolportaje.geocoportaje.Entidades.Punto;
 import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevaubicacionActivity;
+import uap.geocolportaje.geocoportaje.ListaSeleccion.listalibrosActivity;
+import uap.geocolportaje.geocoportaje.ListaSeleccion.listapuntoActivity;
 import uap.geocolportaje.geocoportaje.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -33,6 +40,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
+
+    Conexion conn;
+
+    ArrayList<Punto> listaPuntos;
 
 
     @Override
@@ -43,6 +54,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+    }
+
+
+    public void agregarMarcador(double lat, double lng) {
+        LatLng coordenadas = new LatLng(lat, lng);
+        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
+        if (marcador != null)marcador.remove();
+
+        marcador = mMap.addMarker(new MarkerOptions()
+                        .position(coordenadas)
+                        .title("Ubicacion Actual")
+                //.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)
+        );
+        mMap.animateCamera(miUbicacion);
     }
 
     public void onClick(View view) {
@@ -52,18 +79,75 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 break;
 
             case R.id.btnUbicacion:
-
-                Toast.makeText(this, "Ubicacion.", Toast.LENGTH_SHORT).show();
+                miUbicacion();
                 break;
 
+            case R.id.btnVerPunto:
+                Intent i = new Intent(this,listapuntoActivity.class);
+                i.putExtra("Ver",true);
+                startActivity(i);
+                break;
+
+            case R.id.btnEliminarPunto:
+                Intent ii = new Intent(this,listapuntoActivity.class);
+                ii.putExtra("Eliminar",true);
+                startActivity(ii);
+                break;
         }
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        miUbicacion();
+        //miUbicacion();
+        cargarPuntos();
+        agregarPuntosGuardados();
+    }
+
+    private void cargarPuntos(){
+        conn = new Conexion(this,"BD",null,1);
+        SQLiteDatabase db= conn.getReadableDatabase();
+
+        Punto punto=null;
+        listaPuntos=new ArrayList<Punto>();
+
+        try{
+            Cursor cursor=db.rawQuery("SELECT id, lat, long, descripcion, titulo FROM punto",null);
+
+            while (cursor.moveToNext()){
+                punto = new Punto();
+                punto.setId(cursor.getInt(0));
+                punto.setLatitud(cursor.getDouble(1));
+                punto.setLongitud(cursor.getDouble(2));
+                punto.setDescripcion(cursor.getString(3));
+                punto.setTitulo(cursor.getString(4));
+
+                listaPuntos.add(punto);
+            }
+            db.close();
+
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    private void agregarPuntosGuardados(){
+        LatLng coordenadas;
+        String titulomarcador="";
+
+        if(listaPuntos.size()>0){
+            for(int i=0;i<listaPuntos.size();i++) {
+                coordenadas = new LatLng(listaPuntos.get(i).getLatitud(), listaPuntos.get(i).getLongitud());
+                titulomarcador = listaPuntos.get(i).getTitulo();
+
+                marcador = mMap.addMarker(new MarkerOptions()
+                        .position(coordenadas)
+                        .title(titulomarcador)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcadorpunto))
+                );
+            }
+        }
     }
 
     public void ObtenerUbicacion() {
@@ -100,18 +184,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public void agregarMarcador(double lat, double lng) {
-        LatLng coordenadas = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
-        if (marcador != null)marcador.remove();
 
-        marcador = mMap.addMarker(new MarkerOptions()
-                .position(coordenadas)
-                .title("Ubicacion Actual")
-                //.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)
-                );
-        mMap.animateCamera(miUbicacion);
-    }
 
     private void actualizarUbicacion(Location location) {
         if (location != null) {
@@ -152,7 +225,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         public void onProviderDisabled(String s) {
-
+            Toast.makeText(getApplicationContext(),"Ubicacion deshabilitada. Por favor active la ubicación del celular",Toast.LENGTH_LONG).show();
         }
     };
 

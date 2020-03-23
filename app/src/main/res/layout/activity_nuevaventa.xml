@@ -4,6 +4,142 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevaventaActivity">
+    tools:context="uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevolibroActivity">
+
+    <RelativeLayout
+        android:layout_width="355dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="416dp"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/relativeLayout">
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="56dp"
+            android:layout_toStartOf="@+id/btnGuardarVenta"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:onClick="onClick"
+            android:text="Cancelar" />
+
+        <Button
+            android:id="@+id/btnGuardarVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:onClick="onClick"
+            android:text="Guardar"
+            android:layout_alignBaseline="@+id/btnCancelar"
+            android:layout_alignBottom="@+id/btnCancelar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="62dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="353dp"
+        android:layout_height="143dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="116dp"
+        tools:layout_editor_absoluteY="252dp">
+
+        <ListView
+            android:id="@+id/listViewLibrosSel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="354dp"
+        android:layout_height="226dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Finalizacion de la Venta"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/lblNombreCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView13"
+            android:layout_marginTop="15dp"
+            android:text="TextView"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lblNombreCliente"
+            android:layout_marginTop="13dp"
+            android:text="Cantida de cuotas"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinerCuotas"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView15"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="291dp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/spinerCuotas"
+            android:layout_below="@+id/spinerCuotas"
+            android:layout_marginTop="17dp"
+            android:text="Precio Total"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/textView12"
+            android:layout_alignStart="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/edPrecio"
+            android:layout_toStartOf="@+id/edPrecio"
+            android:text="$"
+            android:textSize="35sp" />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

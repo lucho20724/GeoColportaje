@@ -6,17 +6,68 @@
     android:layout_height="match_parent"
     tools:context="uap.geocolportaje.geocoportaje.ListaSeleccion.listalibrosActivity">
 
-    <ListView
-        android:id="@+id/listViewLibros"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:background="@color/colorPrimary"
-        android:cacheColorHint="@color/common_google_signin_btn_text_dark_focused"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false"
-        android:visibility="visible"
+    <RelativeLayout
+        android:layout_width="371dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="-2dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lblLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccion un Libro:"
+            android:textSize="33sp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="374dp"
+        android:layout_height="375dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ListView
+            android:id="@+id/listViewLibros"
+            android:layout_width="368dp"
+            android:layout_height="495dp"
+            android:background="@android:color/holo_green_light"
+            android:cacheColorHint="@color/common_google_signin_btn_text_dark_focused"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="367dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+
+        <Button
+            android:id="@+id/btnSeguirVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:elevation="24dp"
+            android:onClick="onClick"
+            android:text="Siguiente" />
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

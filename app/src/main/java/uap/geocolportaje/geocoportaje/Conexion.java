@@ -3,6 +3,7 @@ package uap.geocolportaje.geocoportaje;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import uap.geocolportaje.geocoportaje.Utilidades.Utilidades;
 
@@ -24,8 +25,8 @@ public class Conexion extends SQLiteOpenHelper {
         db.execSQL(Utilidades.CREAR_TABLA_PLANILLAS);
         db.execSQL(Utilidades.CREAR_TABLA_VENTA);
         db.execSQL(Utilidades.CREAR_TABLA_VENTA_LIBROS);
-        db.execSQL(Utilidades.CREAR_TABLA_PUNTO);
         db.execSQL(Utilidades.CREAR_TABLA_CLIENTES);
+        db.execSQL(Utilidades.CREAR_TABLA_PUNTO);
     }
 
     @Override
@@ -38,7 +39,6 @@ public class Conexion extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXIST venta_libro");
         db.execSQL("DROP TABLE IF EXIST punto");
         db.execSQL("DROP TABLE IF EXIST cliente");
-
         onCreate(db);
     }
 }

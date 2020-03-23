@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string-array name="combo_cuotas">
+        <item>1 Cuota</item>
+        <item>2 Cuotas</item>
+        <item>3 Cuotas</item>
+    </string-array>
+</resources>

@@ -51,6 +51,7 @@
             android:layout_marginStart="61dp"
             android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
             android:elevation="24dp"
+            android:onClick="onClick"
             android:text="Cancelar" />
 
         <TextView

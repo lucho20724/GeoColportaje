@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_google_signin_btn_text_dark_focused"
-    tools:context="uap.geocolportaje.geocoportaje.Activities.MapsActivity"
+    tools:context="uap.geocolportaje.geocoportaje.ActivitiesPrincipales.MapsActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">
 
@@ -19,6 +19,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,6 +29,46 @@
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1">
 
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver Punto"
+            android:layout_below="@+id/btnVerPunto"
+            android:layout_alignStart="@+id/btnVerPunto" />
+
+        <ImageButton
+            android:id="@+id/btnVerPunto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/textView25"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:onClick="onClick"
+            android:src="@drawable/iconover" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/btnUbicacion"
+            android:layout_marginRight="16dp"
+            android:text="Ubicacion"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btnGuardarPunto"
+            android:text="Guardar Punto"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="8dp" />
+
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:map="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
@@ -35,27 +76,52 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/btnUbicacion"
-            tools:context="uap.geocolportaje.geocoportaje.Activities.MapsActivity" />
+            android:layout_alignParentStart="true"
+            tools:context="uap.geocolportaje.geocoportaje.ActivitiesPrincipales.MapsActivity"
+            android:layout_below="@+id/textView24" />
 
         <ImageButton
             android:id="@+id/btnUbicacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
             android:elevation="24dp"
             android:onClick="onClick"
-            android:src="@drawable/iconomiposicion" />
+            android:src="@drawable/iconomiubicacion"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/textView24" />
 
         <ImageButton
             android:id="@+id/btnGuardarPunto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
             android:onClick="onClick"
-            android:src="@drawable/iconoguardar" />
+            android:src="@drawable/iconoguardarubicacion"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageButton
+            android:id="@+id/btnEliminarPunto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textView27"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+            android:onClick="onClick"
+            android:src="@drawable/iconoeliminar" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar Punto"
+            android:layout_below="@+id/btnEliminarPunto"
+            android:layout_toStartOf="@+id/textView24"
+            android:layout_marginEnd="12dp" />
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uap.geocolportaje.geocoportaje.Informes.informepuntosActivity">
+    tools:context="uap.geocolportaje.geocoportaje.Informes.informeplanillaActivity">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="489dp"
+        android:layout_marginLeft="-330dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="-260dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/lblTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblFecha"
+            android:layout_centerHorizontal="true"
+            android:text="TextView"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/lblLongitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_below="@+id/lblTituloPunto"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="160dp" />
+
+        <TextView
+            android:id="@+id/lblDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_below="@+id/lblTituloPunto"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="62dp" />
+
+        <TextView
+            android:id="@+id/lblTituloPunto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_marginTop="44dp"
+            android:layout_below="@+id/lblTitulo"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/lblLatitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_marginBottom="74dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
+
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

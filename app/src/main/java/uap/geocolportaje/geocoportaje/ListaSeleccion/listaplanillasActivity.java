@@ -14,19 +14,19 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import uap.geocolportaje.geocoportaje.Activities.libroActivity;
-import uap.geocolportaje.geocoportaje.Activities.planillaActivity;
+import uap.geocolportaje.geocoportaje.ActivitiesPrincipales.planillaActivity;
 import uap.geocolportaje.geocoportaje.Conexion;
-import uap.geocolportaje.geocoportaje.Entidades.Libro;
 import uap.geocolportaje.geocoportaje.Entidades.Planilla;
 import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevaplanillaActivity;
+import uap.geocolportaje.geocoportaje.Informes.informeplanillaActivity;
 import uap.geocolportaje.geocoportaje.R;
 
 public class listaplanillasActivity extends AppCompatActivity {
 
     ListView listViewPlanillas;
     Conexion conn;
-    boolean eliminar;
+    boolean eliminar, modificar;
+    boolean ver;
     ArrayList<String> listaInformacion;
     ArrayList<Planilla> listaPlanillas;
     Context context;
@@ -49,16 +49,25 @@ public class listaplanillasActivity extends AppCompatActivity {
         listViewPlanillas.setAdapter(adaptador);
 
         eliminar = getIntent().getBooleanExtra("Eliminar",false);
+        modificar = getIntent().getBooleanExtra("Modificar",false);
+
+        ver = getIntent().getBooleanExtra("Ver",false);
 
         listViewPlanillas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int pos, long l) {
                 if (eliminar){
                     eliminarPlanilla(listaPlanillas.get(pos).getId());
-                }else {
+                }else if (ver){
+                    Intent i= new Intent(getApplicationContext(),informeplanillaActivity.class);
+
+                    i.putExtra("idPlanilla",listaPlanillas.get(pos).getId());
+                    startActivity(i);
+                } else if (modificar) {
                     Intent i= new Intent(getApplicationContext(),nuevaplanillaActivity.class);
 
                     i.putExtra("idPlanilla",listaPlanillas.get(pos).getId());
+                    i.putExtra("Modificar",true);
                     startActivity(i);
                 }
             }
@@ -73,7 +82,7 @@ public class listaplanillasActivity extends AppCompatActivity {
                 "WHERE id="+String.valueOf(id);
 
         db.execSQL(sql);
-        Toast.makeText(getApplicationContext(),"Planilla Eliminado",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Planilla Eliminada",Toast.LENGTH_LONG).show();
         startActivity(i);
     }
 
@@ -116,8 +125,6 @@ public class listaplanillasActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG).show();
 
         }
-
-
         obtenerLista();
     }
 }

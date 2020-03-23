@@ -4,6 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uap.geocolportaje.geocoportaje.Informes.informeclienteActivity">
+    tools:context="uap.geocolportaje.geocoportaje.Informes.informeplanillaActivity">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="489dp"
+        android:layout_marginLeft="-330dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="-260dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lblTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblFecha"
+            android:layout_centerHorizontal="true"
+            android:text="Información del Cliente"
+            android:textAlignment="center"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/lblNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/lblTitulo"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/lblApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/lblNombre"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/lblMail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_marginTop="32dp"
+            android:layout_below="@+id/lblApellido"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/lblTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:layout_marginTop="28dp"
+            android:layout_below="@+id/lblMail"
+            android:layout_alignParentStart="true" />
+
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -35,6 +35,15 @@ public class Utilidades {
             "editorial TEXT" +
             ")";
 
+    public static final String CREAR_TABLA_CLIENTES= "CREATE TABLE cliente (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            "nombre TEXT, "+
+            "apellido TEXT, "+
+            "telefono TEXT, "+
+            "mail TEXT "+
+            ")";
+
+
     public static final String CREAR_TABLA_PLANILLAS= "CREATE TABLE planilla ( "+
             "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "horas_presenta INTEGER, "+
@@ -49,10 +58,13 @@ public class Utilidades {
             "FOREIGN KEY (id_usuario) REFERENCES usuario (id) "+
             ")";
 
-    public static final String CREAR_TABLA_VENTA="CREATE TABLE venta (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "preciototal INTEGER, " +
-            "id_usuario INTEGER, " +
-            "FOREIGN KEY (id_usuario) REFERENCES usuario (id)" +
+    public static final String CREAR_TABLA_VENTA="CREATE TABLE venta (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "preciototal DOUBLE, " +
+            "cuotas INTEGER, "+
+            "id_cliente INTEGER, " +
+            "fecha DATE, "+
+            "FOREIGN KEY (id_cliente) REFERENCES cliente (id)" +
             ")";
 
     public static final String CREAR_TABLA_VENTA_LIBROS="CREATE TABLE venta_libro (" +
@@ -63,25 +75,18 @@ public class Utilidades {
             "FOREIGN KEY (id_libro) REFERENCES libro (id)" +
             ")";
 
+
     public static final String CREAR_TABLA_PUNTO="CREATE TABLE punto ("+
             "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
             "lat DOUBLE, "+
             "long DOUBLE, "+
-            "descripcion TEXT "+
+            "descripcion TEXT, "+
+            "titulo TEXT, "+
+            "id_cliente INTEGER, "+
+            "FOREIGN KEY (id_cliente) REFERENCES cliente (id) "+
             ")";
-            /*"id_categoria INTEGER, "+
-            "FOREING KEY (id_categoria) REFERENCES categoria (id)"+
-            ")";*/
 
-    public static final String CREAR_TABLA_CLIENTES= "CREATE TABLE cliente (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
-            "nombre TEXT, "+
-            "apellido TEXT, "+
-            "telefono TEXT, "+
-            "mail TEXT "+
-            /*"id_punto INTEGER, "+
-            "FOREING KEY (id_punto) REFERENCES punto (id)"+*/
-            ")";
+
 
     public Integer ObtenerIdUsuario(Context context){
         Integer idUser=null;

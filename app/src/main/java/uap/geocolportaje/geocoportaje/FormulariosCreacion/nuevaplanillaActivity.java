@@ -83,25 +83,56 @@ public class nuevaplanillaActivity extends AppCompatActivity {
             CargarDatos();
             modificar=true;
         }
-
     }
 
 
-
+    /*TODO
+    * Mensajes de Confirmacion
+    * */
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnGuardarPlanilla:
-                if (!checkHoy.isChecked()){
-                    setearFecha();
+                if(validar()){
+                    if (!checkHoy.isChecked()){
+                        setearFecha();
+                    }
+                    if(modificar){
+                        modificarPlanilla();
+                    }else {
+                        guardarPlanilla();
+                    }
+
+                    finish();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Debe completar todos los campos",Toast.LENGTH_SHORT).show();
+                    break;
                 }
-                guardarPlanilla();
                 break;
 
             case R.id.ckHoy:
                 mostrarCamposFecha();
                 break;
+
+            case R.id.btnCancelar:
+                finish();
+                break;
         }
     }
+
+    private boolean validar(){
+        boolean valido=false;
+
+        if (!campoHorasPresetacion.getText().toString().isEmpty() && !campoHorasEntrega.getText().toString().isEmpty() && !campoPresentaciones.getText().toString().isEmpty() &&
+                !campoSuscripciones.getText().toString().isEmpty() && !campoFolletos.getText().toString().isEmpty()
+                && !campoOraciones.getText().toString().isEmpty()&& !campoVentas.getText().toString().isEmpty()){
+            valido=true;
+        }
+
+        return valido;
+    }
+
+
+
 
     private void setearFecha() {
         String dia,mes,anio;
@@ -177,6 +208,29 @@ public class nuevaplanillaActivity extends AppCompatActivity {
         } finally {
             db.close();
         }
+    }
+
+    private void modificarPlanilla(){
+        Conexion con = new Conexion(this, "BD", null, 1);
+        SQLiteDatabase db = con.getWritableDatabase();
+
+        Utilidades ut = new Utilidades();
+
+        String sql = "UPDATE planilla " +
+                "SET horas_presenta ="+campoHorasPresetacion.getText().toString()+", horas_entrega="+campoHorasEntrega.getText().toString()+", presentaciones="+campoPresentaciones.getText().toString()+" " +
+                ", suscripciones ="+campoSuscripciones.getText().toString()+", folletos_misioneros="+campoFolletos.getText().toString()+"," +
+                " oraciones = "+campoOraciones.getText().toString()+", cantidad_ventas = "+campoVentas.getText().toString()+", fecha = "+fecha+"," +
+                " id_usuario = "+ut.ObtenerIdUsuario(this);
+
+        try {
+            db.execSQL(sql);
+            Toast.makeText(getApplicationContext(), "Planilla Modificada", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+        } finally {
+            db.close();
+        }
+
     }
 
 

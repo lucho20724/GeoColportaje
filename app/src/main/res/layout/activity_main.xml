@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uap.geocolportaje.geocoportaje.Activities.MainActivity"
+    tools:context="uap.geocolportaje.geocoportaje.ActivitiesPrincipales.MainActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
@@ -109,6 +109,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/boton_redondo"
             android:elevation="24dp"
+            android:onClick="onClick"
             android:src="@drawable/iconobotonclientes" />
 
         <TextView
