@@ -122,16 +122,15 @@ public class nuevolibroActivity extends AppCompatActivity {
     }
 
     private void modificarLibro() {
-        Conexion conn = new Conexion(this,"BD",null,1);
-        SQLiteDatabase db= conn.getWritableDatabase();
+        Libro libro = new Libro();
+        pLibro p = new pLibro();
 
-        String sql= "UPDATE libro "+
-                "SET nombre= '"+campoLibro.getText().toString()+"', autor= '"+campoAutor.getText().toString()+
-                "', editorial= '"+campoEditorial.getText().toString()+"'"+
-                "WHERE id= "+String.valueOf(idLibro);
+        libro.setNombre(campoLibro.getText().toString());
+        libro.setAutor(campoAutor.getText().toString());
+        libro.setEditorial(campoEditorial.getText().toString());
 
-        db.execSQL(sql);
-        db.close();
+        p.modificarLibroBD(libro,getApplicationContext(),idLibro);
+
         Toast.makeText(getApplicationContext(),"Libro Modificado",Toast.LENGTH_SHORT).show();
 
     }

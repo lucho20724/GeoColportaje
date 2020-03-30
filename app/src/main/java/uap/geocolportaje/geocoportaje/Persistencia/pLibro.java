@@ -34,7 +34,7 @@ public class pLibro {
 
     }
 
-    public void modificarLibroBD(Libro libro, Context context){
+    public void modificarLibroBD(Libro libro, Context context, int idLibro){
         String  sql;
         Conexion con = new Conexion(context,"BD",null,1);
         SQLiteDatabase db= con.getWritableDatabase();
@@ -42,7 +42,7 @@ public class pLibro {
         sql= "UPDATE libro "+
                 "SET nombre= '"+libro.getNombre()+"', autor= '"+libro.getAutor()+
                 "', editorial= '"+libro.getEditorial()+"'"+
-                "WHERE id= "+String.valueOf(libro.getId());
+                "WHERE id= "+String.valueOf(idLibro);
 
         try{
             db.execSQL(sql);
@@ -126,4 +126,33 @@ public class pLibro {
         db.close();
         return libro;
     }
+
+    public ArrayList<Libro> buscarLibrosPorIdBD(String ids, Context context){
+        Conexion con = new Conexion(context,"BD",null,1);
+        SQLiteDatabase db= con.getReadableDatabase();
+
+        Libro libro = null;
+
+        ArrayList<Libro> listaLibros = new ArrayList<Libro>();
+        try{
+            Cursor cursor= db.rawQuery("SELECT nombre, autor FROM libro WHERE id IN ("+ids+")",null);
+
+            while (cursor.moveToNext()){
+                libro = new Libro();
+                libro.setNombre(cursor.getString(0));
+                libro.setAutor(cursor.getString(1));
+
+                listaLibros.add(libro);
+            }
+        }catch (Exception e)
+        {
+            Toast.makeText(context,e.getMessage().toString(),Toast.LENGTH_LONG).show();
+
+        }
+
+        return listaLibros;
+
+    }
+
+
 }

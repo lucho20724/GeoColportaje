@@ -26,6 +26,8 @@ import uap.geocolportaje.geocoportaje.Conexion;
 import uap.geocolportaje.geocoportaje.Entidades.Cliente;
 import uap.geocolportaje.geocoportaje.Entidades.Libro;
 import uap.geocolportaje.geocoportaje.Entidades.Venta;
+import uap.geocolportaje.geocoportaje.Persistencia.pCliente;
+import uap.geocolportaje.geocoportaje.Persistencia.pLibro;
 import uap.geocolportaje.geocoportaje.Persistencia.pVenta;
 import uap.geocolportaje.geocoportaje.R;
 
@@ -184,12 +186,8 @@ public class nuevaventaActivity extends AppCompatActivity {
 
         pVenta p = new pVenta();
 
-        try {
-            p.guardarVentaBD(venta,context);
 
-        }catch (Exception e){
-
-        }
+        p.guardarVentaBD(venta,context);
 
     }
 
@@ -212,10 +210,11 @@ public class nuevaventaActivity extends AppCompatActivity {
     }
 
     private void consultarListaLibroSel() {
+        pLibro p = new pLibro();
+        String ids= transformarIds();
 
-        /*TODO
-        realizar esta funcion en la clase de persistencia
-         */
+        listaLibros = p.buscarLibrosPorIdBD(ids,context);
+        obtenerLista();/*
         SQLiteDatabase db= conn.getReadableDatabase();
 
         Libro libro = null;
@@ -237,7 +236,7 @@ public class nuevaventaActivity extends AppCompatActivity {
 
         }
 
-        obtenerLista();
+        obtenerLista();*/
     }
 
     private String transformarIds(){
@@ -254,27 +253,8 @@ public class nuevaventaActivity extends AppCompatActivity {
     }
 
     private Cliente consultarCliente() {
-        Cliente cliente = null;
-        SQLiteDatabase db = conn.getReadableDatabase();
-        String[] parametro = {String.valueOf(idCliente)};
-
-        try{
-            Cursor cursor = db.rawQuery("SELECT id, nombre, apellido, mail, telefono FROM cliente" +
-                    " WHERE id=?", parametro);
-
-            cursor.moveToFirst();
-
-            cliente = new Cliente();
-            cliente.setId(cursor.getInt(0));
-            cliente.setNombre(cursor.getString(1));
-            cliente.setApellido(cursor.getString(2));
-            cliente.setMail(cursor.getString(3));
-            cliente.setTelefono(cursor.getString(4));
-
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG);
-        }
-        
+        pCliente p = new pCliente();
+        Cliente cliente = p.buscarClienteIdBD(idCliente,context);
         return cliente;
     }
 

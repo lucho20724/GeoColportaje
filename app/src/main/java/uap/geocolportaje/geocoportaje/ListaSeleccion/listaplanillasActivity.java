@@ -19,6 +19,7 @@ import uap.geocolportaje.geocoportaje.Conexion;
 import uap.geocolportaje.geocoportaje.Entidades.Planilla;
 import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevaplanillaActivity;
 import uap.geocolportaje.geocoportaje.Informes.informeplanillaActivity;
+import uap.geocolportaje.geocoportaje.Persistencia.pPlanilla;
 import uap.geocolportaje.geocoportaje.R;
 
 public class listaplanillasActivity extends AppCompatActivity {
@@ -75,13 +76,9 @@ public class listaplanillasActivity extends AppCompatActivity {
     }
 
     private void eliminarPlanilla(Integer id){
-        Intent i=new Intent(this,planillaActivity.class);
-        SQLiteDatabase db= conn.getWritableDatabase();
-
-        String sql= "DELETE FROM planilla "+
-                "WHERE id="+String.valueOf(id);
-
-        db.execSQL(sql);
+        pPlanilla p = new pPlanilla();
+        Intent i = new Intent(this,planillaActivity.class);
+        p.eliminarPlanillaBD(id,context);
         Toast.makeText(getApplicationContext(),"Planilla Eliminada",Toast.LENGTH_LONG).show();
         startActivity(i);
     }
@@ -96,35 +93,10 @@ public class listaplanillasActivity extends AppCompatActivity {
 
 
     private void consultarListaPlanilla(){
-        SQLiteDatabase db= conn.getReadableDatabase();
-
-        Planilla planilla=null;
         listaPlanillas=new ArrayList<Planilla>();
+        pPlanilla p = new pPlanilla();
 
-        try{
-            Cursor cursor=db.rawQuery("SELECT id, horas_presenta, horas_entrega, " +
-                    "presentaciones, suscripciones, folletos_misioneros, oraciones, " +
-                    "cantidad_ventas, fecha FROM planilla ",null);
-
-            while (cursor.moveToNext()){
-                planilla = new Planilla();
-                planilla.setId(cursor.getInt(0));
-                planilla.setHoras_presenta(cursor.getInt(1));
-                planilla.setHoras_entrega(cursor.getInt(2));
-                planilla.setPresentaciones(cursor.getInt(3));
-                planilla.setSuscripciones(cursor.getInt(4));
-                planilla.setFolletos_misioneros(cursor.getInt(5));
-                planilla.setOraciones(cursor.getInt(6));
-                planilla.setCantidad_ventas(cursor.getInt(7));
-                planilla.setFecha(cursor.getString(8));
-
-                listaPlanillas.add(planilla);
-            }
-
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG).show();
-
-        }
+        listaPlanillas=p.listarPlanillasBD(listaPlanillas,context);
         obtenerLista();
     }
 }

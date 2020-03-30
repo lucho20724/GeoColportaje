@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import uap.geocolportaje.geocoportaje.Conexion;
+import uap.geocolportaje.geocoportaje.Entidades.Cliente;
+import uap.geocolportaje.geocoportaje.Persistencia.pCliente;
 import uap.geocolportaje.geocoportaje.R;
 
 public class nuevoclienteActivity extends AppCompatActivity {
@@ -110,52 +112,42 @@ public class nuevoclienteActivity extends AppCompatActivity {
 
 
     private void CargarDatos() {
-        SQLiteDatabase db= conn.getReadableDatabase();
-        String[] parametro = {String.valueOf(idCliente)};
+        pCliente p = new pCliente();
+        Cliente cliente = p.buscarClienteIdBD(idCliente,getApplicationContext());
 
-        try{
-            Cursor cursor=db.rawQuery("SELECT nombre, apellido, mail, telefono "+
-                    " FROM cliente WHERE id=? ",parametro);
-
-            cursor.moveToFirst();
-
-            campoNombre.setText(cursor.getString(0));
-            campoApellido.setText(cursor.getString(1));
-            campoMail.setText(cursor.getString(2));
-            campoTelefono.setText(cursor.getString(3));
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG).show();
-        }
+        campoNombre.setText(cliente.getNombre());
+        campoApellido.setText(cliente.getApellido());
+        campoMail.setText(cliente.getMail());
+        campoTelefono.setText(cliente.getTelefono());
     }
 
     private void modificarCliente(){
-        Conexion conn = new Conexion(this,"BD",null,1);
-        SQLiteDatabase db= conn.getWritableDatabase();
+        Cliente cliente = new Cliente();
+        pCliente p = new pCliente();
 
-        String sql= "UPDATE cliente "+
-                "SET nombre= '"+campoNombre.getText().toString()+"', apellido= '"+campoApellido.getText().toString()+
-                "', mail= '"+campoMail.getText().toString()+"', telefono= '"+campoTelefono.getText().toString()+"' "+
-                "WHERE id= "+String.valueOf(idCliente);
+        cliente.setNombre(campoNombre.getText().toString());
+        cliente.setApellido(campoApellido.getText().toString());
+        cliente.setMail(campoMail.getText().toString());
+        cliente.setTelefono(campoTelefono.getText().toString());
 
-        db.execSQL(sql);
-        db.close();
+        p.modificarClienteBD(cliente,getApplicationContext(),idCliente);
+
         Toast.makeText(getApplicationContext(),"Cliente Modificado",Toast.LENGTH_SHORT).show();
-
 
     }
 
     private void guardarCliente(){
-        Conexion conn= new Conexion(this,"BD",null,1);
-        SQLiteDatabase db= conn.getWritableDatabase();
+        Cliente cliente = new Cliente();
+        pCliente p = new pCliente();
 
-        String sql= "INSERT INTO cliente (nombre,apellido,mail,telefono) "+
-                "VALUES ('"+campoNombre.getText().toString()+"', '"+campoApellido.getText().toString()+
-                "', '"+campoMail.getText().toString()+"', '"+campoTelefono.getText().toString()+"')";
+        cliente.setNombre(campoNombre.getText().toString());
+        cliente.setApellido(campoApellido.getText().toString());
+        cliente.setMail(campoMail.getText().toString());
+        cliente.setTelefono(campoTelefono.getText().toString());
 
+        p.guardarClienteDB(cliente, getApplicationContext());
 
-        db.execSQL(sql);
-        db.close();
-        Toast.makeText(getApplicationContext(),"Cliente Guardado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Libro Guardado",Toast.LENGTH_SHORT).show();
 
     }
 }

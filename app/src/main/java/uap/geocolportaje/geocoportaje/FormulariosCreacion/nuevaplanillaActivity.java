@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import uap.geocolportaje.geocoportaje.Conexion;
+import uap.geocolportaje.geocoportaje.Entidades.Planilla;
+import uap.geocolportaje.geocoportaje.Persistencia.pPlanilla;
 import uap.geocolportaje.geocoportaje.R;
 import uap.geocolportaje.geocoportaje.Utilidades.Utilidades;
 
@@ -189,48 +191,41 @@ public class nuevaplanillaActivity extends AppCompatActivity {
     }
 
     private void guardarPlanilla() {
-        Conexion con = new Conexion(this, "BD", null, 1);
-        SQLiteDatabase db = con.getWritableDatabase();
-
+        Planilla planilla = new Planilla();
+        pPlanilla p = new pPlanilla();
         Utilidades ut = new Utilidades();
 
-        String sql = "INSERT INTO planilla " +
-                "(horas_presenta, horas_entrega, presentaciones, suscripciones, folletos_misioneros, oraciones, cantidad_ventas, fecha, id_usuario ) " +
-                "VALUES (" + campoHorasPresetacion.getText().toString() + ", " + campoHorasEntrega.getText().toString() + ", " +
-                campoPresentaciones.getText().toString() + ", " + campoSuscripciones.getText().toString() + ", " + campoFolletos.getText().toString() + ", " +
-                campoOraciones.getText().toString() + ", " + campoVentas.getText().toString() + ", '" + fecha + "', " + ut.ObtenerIdUsuario(this) +
-                ")";
-        try {
-            db.execSQL(sql);
-            Toast.makeText(getApplicationContext(), "Planilla Guardada", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-        } finally {
-            db.close();
-        }
+        planilla.setHoras_presenta(Integer.parseInt(campoHorasPresetacion.getText().toString()));
+        planilla.setHoras_entrega(Integer.parseInt(campoHorasEntrega.getText().toString()));
+        planilla.setPresentaciones(Integer.parseInt(campoPresentaciones.getText().toString()));
+        planilla.setSuscripciones(Integer.parseInt(campoSuscripciones.getText().toString()));
+        planilla.setFolletos_misioneros(Integer.parseInt(campoFolletos.getText().toString()));
+        planilla.setOraciones(Integer.parseInt(campoOraciones.getText().toString()));
+        planilla.setCantidad_ventas(Integer.parseInt(campoVentas.getText().toString()));
+        planilla.setFecha(fecha);
+
+        p.guardarPlanillaBD(planilla,ut.ObtenerIdUsuario(getApplicationContext()),getApplicationContext());
+
+        Toast.makeText(getApplicationContext(),"Planilla Guardada",Toast.LENGTH_SHORT).show();
     }
 
     private void modificarPlanilla(){
-        Conexion con = new Conexion(this, "BD", null, 1);
-        SQLiteDatabase db = con.getWritableDatabase();
-
+        Planilla planilla = new Planilla();
+        pPlanilla p = new pPlanilla();
         Utilidades ut = new Utilidades();
 
-        String sql = "UPDATE planilla " +
-                "SET horas_presenta ="+campoHorasPresetacion.getText().toString()+", horas_entrega="+campoHorasEntrega.getText().toString()+", presentaciones="+campoPresentaciones.getText().toString()+" " +
-                ", suscripciones ="+campoSuscripciones.getText().toString()+", folletos_misioneros="+campoFolletos.getText().toString()+"," +
-                " oraciones = "+campoOraciones.getText().toString()+", cantidad_ventas = "+campoVentas.getText().toString()+", fecha = "+fecha+"," +
-                " id_usuario = "+ut.ObtenerIdUsuario(this);
+        planilla.setHoras_presenta(Integer.parseInt(campoHorasPresetacion.getText().toString()));
+        planilla.setHoras_entrega(Integer.parseInt(campoHorasEntrega.getText().toString()));
+        planilla.setPresentaciones(Integer.parseInt(campoPresentaciones.getText().toString()));
+        planilla.setSuscripciones(Integer.parseInt(campoSuscripciones.getText().toString()));
+        planilla.setFolletos_misioneros(Integer.parseInt(campoFolletos.getText().toString()));
+        planilla.setOraciones(Integer.parseInt(campoOraciones.getText().toString()));
+        planilla.setCantidad_ventas(Integer.parseInt(campoVentas.getText().toString()));
+        planilla.setFecha(fecha);
 
-        try {
-            db.execSQL(sql);
-            Toast.makeText(getApplicationContext(), "Planilla Modificada", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-        } finally {
-            db.close();
-        }
+        p.modificarPlanillaBD(planilla, getApplicationContext(), ut.ObtenerIdUsuario(getApplicationContext()), idPlanilla);
 
+        Toast.makeText(getApplicationContext(),"Planilla Modificada",Toast.LENGTH_SHORT).show();
     }
 
 

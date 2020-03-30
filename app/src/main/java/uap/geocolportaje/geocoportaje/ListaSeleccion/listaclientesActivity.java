@@ -22,6 +22,7 @@ import uap.geocolportaje.geocoportaje.Entidades.Libro;
 import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevoclienteActivity;
 import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevolibroActivity;
 import uap.geocolportaje.geocoportaje.Informes.informeclienteActivity;
+import uap.geocolportaje.geocoportaje.Persistencia.pCliente;
 import uap.geocolportaje.geocoportaje.R;
 
 public class listaclientesActivity extends AppCompatActivity {
@@ -80,16 +81,14 @@ public class listaclientesActivity extends AppCompatActivity {
     }
 
     private void eliminarCliente(Integer id){
+        pCliente p = new pCliente();
         Intent i=new Intent(this,clienteActivity.class);
-        SQLiteDatabase db= conn.getWritableDatabase();
-
-        String sql= "DELETE FROM cliente "+
-                "WHERE id="+String.valueOf(id);
-
-        db.execSQL(sql);
+        p.eliminarClienteBD(id,context);
         Toast.makeText(getApplicationContext(),"Cliente Eliminado",Toast.LENGTH_LONG).show();
         startActivity(i);
     }
+
+
 
     private void obtenerLista() {
         listaInformacion = new ArrayList<String>();
@@ -100,31 +99,11 @@ public class listaclientesActivity extends AppCompatActivity {
     }
 
     private void consultarListaCliente(){
-        SQLiteDatabase db= conn.getReadableDatabase();
+        listaClientes= new ArrayList<Cliente>();
+        pCliente p = new pCliente();
 
-        Cliente cliente=null;
-        listaClientes=new ArrayList<Cliente>();
-
-        try{
-            Cursor cursor=db.rawQuery("SELECT id, nombre, apellido FROM cliente",null);
-
-            while (cursor.moveToNext()){
-                cliente = new Cliente();
-                cliente.setId(cursor.getInt(0));
-                cliente.setNombre(cursor.getString(1));
-                cliente.setApellido(cursor.getString(2));
-
-                listaClientes.add(cliente);
-            }
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG).show();
-        }
-
+        listaClientes=p.listarClientesBD(listaClientes,context);
         obtenerLista();
     }
-
-
-
-
 
 }
