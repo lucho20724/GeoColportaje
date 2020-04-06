@@ -80,7 +80,7 @@ public class pCliente {
         clientes=new ArrayList<Cliente>();
 
         try{
-            Cursor cursor=db.rawQuery("SELECT id, nombre, apellido, mail, telefonp FROM cliente",null);
+            Cursor cursor=db.rawQuery("SELECT id, nombre, apellido, mail, telefono FROM cliente",null);
 
             while (cursor.moveToNext()){
                 cliente = new Cliente();

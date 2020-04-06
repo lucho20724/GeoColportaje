@@ -110,6 +110,35 @@ public class pPlanilla {
         return planillas;
     }
 
+    public Planilla buscarPlanillaIdBD(int id, Context context){
+        Planilla planilla = new Planilla();
+        Conexion con = new Conexion(context,"BD",null,1);
+        SQLiteDatabase db= con.getReadableDatabase();
+
+        try{
+            Cursor cursor = db.rawQuery("SELECT horas_presenta, horas_entrega, presentaciones," +
+                    " suscripciones, folletos_misioneros, oraciones, cantidad_ventas " +
+                    "FROM planilla WHERE id ="+String.valueOf(id),null);
+
+            cursor.moveToFirst();
+
+            planilla.setHoras_presenta(cursor.getInt(0));
+            planilla.setHoras_entrega(cursor.getInt(1));
+            planilla.setPresentaciones(cursor.getInt(2));
+            planilla.setSuscripciones(cursor.getInt(3));
+            planilla.setFolletos_misioneros(cursor.getInt(4));
+            planilla.setOraciones(cursor.getInt(5));
+            planilla.setCantidad_ventas(cursor.getInt(6));
+
+
+        }catch (Exception e){
+            Toast.makeText(context, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+        }
+
+
+        return planilla;
+    }
+
 
 
 

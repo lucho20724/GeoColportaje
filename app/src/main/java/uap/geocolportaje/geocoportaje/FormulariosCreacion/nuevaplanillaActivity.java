@@ -133,9 +133,6 @@ public class nuevaplanillaActivity extends AppCompatActivity {
         return valido;
     }
 
-
-
-
     private void setearFecha() {
         String dia,mes,anio;
 
@@ -146,8 +143,6 @@ public class nuevaplanillaActivity extends AppCompatActivity {
         fecha= anio+"-"+mes+"-"+dia;
 
         Toast.makeText(getApplicationContext(),"Nueva fecha: "+fecha, Toast.LENGTH_SHORT).show();
-
-
     }
 
     private void mostrarCamposFecha() {
@@ -163,31 +158,21 @@ public class nuevaplanillaActivity extends AppCompatActivity {
     }
 
     private void CargarDatos() {
-        SQLiteDatabase db=conn.getReadableDatabase();
-        String[] parametro= {String.valueOf(idPlanilla)};
+        Planilla planilla;
+        pPlanilla p = new pPlanilla();
 
-        try{
-            Cursor cursor=db.rawQuery("SELECT horas_presenta, horas_entrega, presentaciones," +
-                    " suscripciones, folletos_misioneros, oraciones, cantidad_ventas " +
-                    "FROM planilla WHERE id =?",parametro);
+        planilla = p.buscarPlanillaIdBD(idPlanilla,getApplicationContext());
 
-            cursor.moveToFirst();
-
-            campoHorasPresetacion.setText(String.valueOf(cursor.getInt(0)));
-            campoHorasEntrega.setText(String.valueOf(cursor.getInt(1)));
-            campoPresentaciones.setText(String.valueOf(cursor.getInt(2)));
-            campoSuscripciones.setText(String.valueOf(cursor.getInt(3)));
-            campoFolletos.setText(String.valueOf(cursor.getInt(4)));
-            campoOraciones.setText(String.valueOf(cursor.getInt(5)));
-            campoVentas.setText(String.valueOf(cursor.getInt(6)));
-            /*TODO
-            * Tratamiento de la fecha
-            * */
-
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
-        }
+        campoHorasPresetacion.setText(planilla.getHoras_presenta());
+        campoHorasEntrega.setText(planilla.getHoras_entrega());
+        campoPresentaciones.setText(planilla.getPresentaciones());
+        campoSuscripciones.setText(planilla.getSuscripciones());
+        campoFolletos.setText(planilla.getFolletos_misioneros());
+        campoOraciones.setText(planilla.getOraciones());
+        campoVentas.setText(planilla.getCantidad_ventas());
+        /*TODO
+        * Tratamiento de la fecha
+        * */
     }
 
     private void guardarPlanilla() {

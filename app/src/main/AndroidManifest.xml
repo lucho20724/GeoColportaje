@@ -42,7 +42,7 @@
         <activity
             android:name=".ActivitiesPrincipales.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".FormulariosCreacion.nuevaubicacionActivity" />
+        <activity android:name=".FormulariosCreacion.nuevopuntoActivity" />
         <activity android:name=".ActivitiesPrincipales.usuarioActivity" />
         <activity android:name=".FormulariosCreacion.nuevaplanillaActivity" />
         <activity android:name=".ActivitiesPrincipales.planillaActivity" />

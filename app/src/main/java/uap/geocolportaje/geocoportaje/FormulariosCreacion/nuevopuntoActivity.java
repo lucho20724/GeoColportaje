@@ -17,9 +17,11 @@ import java.util.ArrayList;
 import uap.geocolportaje.geocoportaje.ActivitiesPrincipales.MapsActivity;
 import uap.geocolportaje.geocoportaje.Conexion;
 import uap.geocolportaje.geocoportaje.Entidades.Cliente;
+import uap.geocolportaje.geocoportaje.Entidades.Punto;
+import uap.geocolportaje.geocoportaje.Persistencia.pPunto;
 import uap.geocolportaje.geocoportaje.R;
 
-public class nuevaubicacionActivity extends AppCompatActivity {
+public class nuevopuntoActivity extends AppCompatActivity {
 
     ArrayList<String> coordenadas;
     EditText campoDescripcion, campoTitulo;
@@ -83,23 +85,8 @@ public class nuevaubicacionActivity extends AppCompatActivity {
     }
 
     private void consultarListaClientes() {
-        conn= new Conexion(this,"BD",null,1);
-        SQLiteDatabase db = conn.getReadableDatabase();
-
-        Cliente cliente= null;
-        clienteList = new ArrayList<Cliente>();
-
-        Cursor cursor = db.rawQuery("SELECT id, nombre, apellido FROM cliente",null );
-
-        while (cursor.moveToNext()){
-            cliente = new Cliente();
-            cliente.setId(cursor.getInt(0));
-            cliente.setNombre(cursor.getString(1));
-            cliente.setApellido(cursor.getString(2));
-
-            clienteList.add(cliente);
-        }
-
+        pPunto p = new pPunto();
+        clienteList = p.listarClientesSeleccionBD(this);
         obtenerLista();
     }
 
@@ -124,37 +111,20 @@ public class nuevaubicacionActivity extends AppCompatActivity {
     }
 
     private void GuardarPuntos(ArrayList<String> lista){
-        conn= new Conexion(this,"BD",null,1);
-        double lng,lat;
-        String mensaje;
-        lat= Double.parseDouble(lista.get(0));
-        lng= Double.parseDouble(lista.get(1));
+        Punto punto = new Punto();
+        pPunto p = new pPunto();
 
-        SQLiteDatabase db= conn.getWritableDatabase();
-
-        String sql="";
-
+        punto.setLatitud(Double.parseDouble(lista.get(0)));
+        punto.setLongitud(Double.parseDouble(lista.get(1)));
+        punto.setDescripcion(campoDescripcion.getText().toString());
+        punto.setTitulo(campoTitulo.getText().toString());
         if(idCliente!=0){
-            sql= "INSERT INTO punto ( "+
-                    "lat, long, descripcion, titulo, id_cliente) "+
-                    "VALUES ("+lat+" ,"+lng+" ,'"+campoDescripcion.getText().toString()+"', '"+campoTitulo.getText().toString()+"', "+String.valueOf(idCliente)+")";
-
+            punto.setId_cliente(idCliente);
         }else{
-             sql= "INSERT INTO punto ( "+
-                    "lat, long, descripcion, titulo) "+
-                    "VALUES ("+lat+" ,"+lng+" ,'"+campoDescripcion.getText().toString()+"', '"+campoTitulo.getText().toString()+"')";
+            punto.setId_cliente(0);
         }
 
-
-
-        try{
-            db.execSQL(sql);
-            db.close();
-            Toast.makeText(getApplicationContext(),"Punto Guardado",Toast.LENGTH_SHORT).show();
-
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_SHORT).show();
-        }
-
+        p.guardarPuntoBD(punto,this);
+        Toast.makeText(getApplicationContext(),"Punto Guardado",Toast.LENGTH_SHORT).show();
     }
 }

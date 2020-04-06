@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import uap.geocolportaje.geocoportaje.Conexion;
+import uap.geocolportaje.geocoportaje.Entidades.Usuario;
+import uap.geocolportaje.geocoportaje.Persistencia.pUsuario;
 import uap.geocolportaje.geocoportaje.R;
 
 public class usuarioActivity extends AppCompatActivity {
@@ -81,51 +83,41 @@ public class usuarioActivity extends AppCompatActivity {
     }
 
     private void modificarUsuario() {
-        conn = new Conexion(this,"BD",null,1);
-        SQLiteDatabase db=conn.getWritableDatabase();
+        Usuario usuario = new Usuario();
+        pUsuario p = new pUsuario();
 
-        String sql= "UPDATE usuario "+
-                "SET nombre = '"+campoNombre.getText().toString()+"', apellido= '"+campoApellido.getText().toString()+
-                "', mail= '"+campoMail.getText().toString()+"', telefono= '"+campoTelefono.getText().toString()+"'";
+        usuario.setNombre(campoNombre.getText().toString());
+        usuario.setApellido(campoApellido.getText().toString());
+        usuario.setMail(campoMail.getText().toString());
+        usuario.setTelefono(campoTelefono.getText().toString());
 
-        db.execSQL(sql);
-        db.close();
-
+        p.modificarUsuarioBD(usuario,this);
         Toast.makeText(getApplicationContext(),"Usuario modificado",Toast.LENGTH_SHORT).show();
     }
 
     private void guardarUsuario() {
-        conn = new Conexion(this,"BD",null,1);
-        SQLiteDatabase db=conn.getWritableDatabase();
+        pUsuario p = new pUsuario();
+        Usuario usuario = new Usuario();
 
-        String sql= "INSERT INTO usuario "+
-                "(nombre, apellido, mail, telefono) "+
-                "VALUES ('"+campoNombre.getText().toString()+"', '"+campoApellido.getText().toString()+"', '"+
-                campoMail.getText().toString()+"', '"+campoTelefono.getText().toString()+"')";
+        usuario.setNombre(campoNombre.getText().toString());
+        usuario.setApellido(campoApellido.getText().toString());
+        usuario.setMail(campoMail.getText().toString());
+        usuario.setTelefono(campoTelefono.getText().toString());
 
-        db.execSQL(sql);
-        db.close();
-
+        p.guardarUsuarioBD(usuario, this);
         Toast.makeText(getApplicationContext(),"Usuario guardado",Toast.LENGTH_SHORT).show();
     }
 
     private void cargarDatos() {
-        conn = new Conexion(this,"BD",null,1);
-        SQLiteDatabase db=conn.getReadableDatabase();
+        Usuario usuario;
+        pUsuario p = new pUsuario();
 
-        try{
-            Cursor cursor = db.rawQuery("SELECT nombre, apellido, mail, telefono " +
-                    "FROM usuario",null);
+        usuario=p.buscarUsuarioDB(getApplicationContext());
 
-            cursor.moveToFirst();
-
-            campoNombre.setText(cursor.getString(0));
-            campoApellido.setText(cursor.getString(1));
-            campoMail.setText(cursor.getString(2));
-            campoTelefono.setText(cursor.getString(3));
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),e.getMessage().toString(),Toast.LENGTH_LONG).show();
-        }
+        campoNombre.setText(usuario.getNombre().toString());
+        campoApellido.setText(usuario.getApellido().toString());
+        campoMail.setText(usuario.getMail().toString());
+        campoTelefono.setText(usuario.getTelefono().toString());
 
     }
 }

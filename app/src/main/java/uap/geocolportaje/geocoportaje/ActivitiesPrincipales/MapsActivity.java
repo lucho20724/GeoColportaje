@@ -29,8 +29,7 @@ import java.util.ArrayList;
 
 import uap.geocolportaje.geocoportaje.Conexion;
 import uap.geocolportaje.geocoportaje.Entidades.Punto;
-import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevaubicacionActivity;
-import uap.geocolportaje.geocoportaje.ListaSeleccion.listalibrosActivity;
+import uap.geocolportaje.geocoportaje.FormulariosCreacion.nuevopuntoActivity;
 import uap.geocolportaje.geocoportaje.ListaSeleccion.listapuntoActivity;
 import uap.geocolportaje.geocoportaje.R;
 
@@ -177,7 +176,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
          mensaje= "Lat: "+String.valueOf(latitud)+" -  Long: "+ String.valueOf(longitud);
 
         //Envio de coordenadas a la activity para guardar en la BD
-        Intent intent = new Intent(getApplicationContext(),nuevaubicacionActivity.class);
+        Intent intent = new Intent(getApplicationContext(),nuevopuntoActivity.class);
         intent.putStringArrayListExtra("coordenadas", coordenadas);
         //Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
         startActivity(intent);
